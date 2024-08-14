@@ -1,3 +1,4 @@
+const userModel = require("../schema/schema");
 
 
 function ValidationUser(req, res, next) {
@@ -21,5 +22,34 @@ function ValidationUser(req, res, next) {
 
     next();
 }
+    
+async function Check(req,res,next) {
+    const{email}= req.body;
 
-module.exports.ValidationUser = ValidationUser;
+    const existUser = await userModel.findOne({email:email})
+
+
+    if(existUser){
+        return res.status(420).json({msg: "UserExist"})
+    }
+   
+    next()
+}
+
+async function CreateUser(req,res) {
+    const{ name, email,password,dateYears} =req.body
+
+//add bcrypt depois abaixo
+
+    const user = new userModel({name, email,password, dateYears})
+
+    try {
+        await user.save();
+        res.status(200).jason({msg:'User create sucessfully!'});
+        
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
