@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express")
 
 const app = express()
@@ -9,9 +10,11 @@ app.get("/deivid",(req,res)=>{
 
 })
 
-app.listen("5000",()=>{
+app.listen(process.env.port,()=>{
     
-    console.log("SERVIDOR ON")
+    console.log("CONECTADO: http://localhost:5000")
+ 
 })
+
 
 
