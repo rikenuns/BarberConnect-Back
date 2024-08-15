@@ -5,19 +5,19 @@ function ValidationUser(req, res, next) {
     const { name, email, password, dateYears } = req.body;
 
     if (!name) {
-        return res.status(404).json({ msg: 'The name is required' });
+        return res.status(400).json({ msg: 'The name is required' });
     }
 
     if (!email) {
-        return res.status(404).json({ msg: 'The email is required' });
+        return res.status(400).json({ msg: 'The email is required' });
     }
 
     if (!password) {
-        return res.status(404).json({ msg: 'The password is required' });
+        return res.status(400).json({ msg: 'The password is required' });
     }
 
     if (!dateYears) {
-        return res.status(404).json({ msg: 'The dateYears is required' });
+        return res.status(400).json({ msg: 'The dateYears is required' });
     }
 
     next();
@@ -30,7 +30,7 @@ async function Check(req,res,next) {
 
 
     if(existUser){
-        return res.status(420).json({msg: "UserExist"})
+        return res.status(200).json({msg: "UserExist"})
     }
    
     next()
@@ -39,7 +39,8 @@ async function Check(req,res,next) {
 async function CreateUser(req,res) {
     const{ name, email,password,dateYears} =req.body
 
-//add bcrypt depois abaixo
+        
+    //add bcrypt depois abaixo
 
     const user = new userModel({name, email,password, dateYears})
 

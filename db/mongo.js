@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 
 async function mongoDB() {
    try {
-        await mongoose.connect(process.env.mongo)
-        console,log("MongoDB conectado!")
+        await mongoose.connect(process.env.mongo )
+        console.log("MongoDB conectado!")
     
    } catch (error) {
     console.error("deu merda",error)
